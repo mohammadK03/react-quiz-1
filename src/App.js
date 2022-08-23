@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Banner from './components/Banner';
+import CoinList from './components/CoinList';
+import Footer from './components/Footer';
+import Nav from './components/Nav'
+import Trade from './components/Trade';
 
 function App() {
+
+  const [ tCoin, setTCoin ] = useState(null);
+
+  const coin = (value) => {
+    setTCoin(value);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" dir="rtl">
+      <Nav />
+      <div data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+        <Banner/>
+        <CoinList handleCoinParent={coin}/>
+        <Trade tradeCoin={tCoin}/>
+      </div>
+      <Footer />
     </div>
   );
 }
